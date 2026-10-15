@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+    {% block title %}
+      Files
+    {% endblock %}
+{% block navmenu %}
+   <a href="/dashboard">Home</a>
+   <a href="#">Files</a>
+   <a href="/dashboard/notes">Notes</a>
+   <a href="#">Profile</a>
+   <a href="#">Logout</a>
+{% endblock %}
+
+{% block content %}
+   <div style="text-align: center;">
+       <div>
+           <h2>SNS-Files</h2>
+       </div>
+       <div>
+           
+           <p>Here you can manage your Files start by creating first File</p>
+       </div>
+       <div>
+          
+            <button><a href="/dashboard/notes/new_notes">My New File</a></button>
+       </div>
+       <div>
+        {% if files %}
+        {% for file in files %}
+        <div>
+            <div>
+                <strong>Title:</strong>
+                {{ file.title }}
+            </div>
+            <div>
+                <strong>Content:</strong>
+                {% if note.content|length>100 %}
+                   {{ note.content[:100]+"..." }}
+                {% else %}
+                   {{ note.content }}
+                {% endif %}
+            </div>
+            <div>
+               <button><a href="dashboard/notes/view/{{notes.notesid}}">View</a></button>
+               <button><a href="dashboard/notes/update/{{notes.notesid}}">Edit</a></button>
+               <button><a href="dashboard/notes/delete/{{notes.notesid}}">Delete</a></button>
+            </div>
+
+        </div>
+        {% endfor %}
+        {% else %}
+        <p><i> Start creating your first note by click on New Notes</i></p>
+        {% endif %}
+
+       </div>
+   </div>
+
+{% endblock %}

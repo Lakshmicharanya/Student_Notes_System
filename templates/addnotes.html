@@ -1,0 +1,83 @@
+
+{% extends "base.html" %}
+
+{% block title %}
+    Add New Note
+{% endblock %}
+
+{% block navmenu %}
+    <a href="/dashboard">Home</a>
+    <a href="#">Files</a>
+    <a href="/dashboard/notes">Notes</a>
+    <a href="#">Profile</a>
+    <a href="#">Logout</a>
+{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+">
+
+    <h2 style="text-align: center;">Add New Note</h2>
+
+    <p style="text-align: center;">
+        Create and save your personal notes.
+    </p>
+
+    <form method="POST" action="{{ url_for('new_note') }}">
+
+        <label for="title">Note Title</label>
+
+        <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Enter note title"
+            required
+            style="
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0 20px;
+                box-sizing: border-box;
+            "
+        >
+
+        <label for="content">Note Content</label>
+
+        <textarea
+            id="content"
+            name="content"
+            placeholder="Write your note here..."
+            rows="8"
+            required
+            style="
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0 20px;
+                box-sizing: border-box;
+                resize: vertical;
+            "
+        ></textarea>
+
+        <div style="text-align: center;">
+
+            <button type="submit">
+                Save Note
+            </button>
+
+            <a href="{{ url_for('mynotes') }}">
+                <button type="button">Cancel</button>
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
